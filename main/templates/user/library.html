@@ -1,0 +1,28 @@
+{% extends base/base.html %}
+
+{% block title %} Library {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>My Library</h1>
+    {% if library %}
+        <div class="row">
+            {% for anime in library %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ anime.image_url }}" class="card-img-top" alt="{{ anime.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ anime.title }}</h5>
+                            <p class="card-text">{{ anime.synopsis|truncatechars:150 }}</p>
+                            <a href="{{ anime.url }}" class="btn btn-primary" target="_blank">View on MyAnimeList</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Your library is empty.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
